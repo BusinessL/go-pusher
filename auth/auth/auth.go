@@ -7,7 +7,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	authpb "pusher/auth/api/gen/v1"
+	authpb "pusher/auth/api/gen/v1/auth"
 )
 
 type Service struct {
@@ -21,8 +21,6 @@ type OpenIDResolver interface {
 }
 
 func (s *Service) Login(c context.Context, req *authpb.LoginRequest) (*authpb.LoginResponse, error) {
-	//openID, err:= s.OpenIDResolver.Resolve()
-
 	s.Logger.Info("received", zap.String("code", req.Code))
 
 	openID, err := s.OpenIDResolver.Resolve(req.Code)

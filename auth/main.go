@@ -3,31 +3,31 @@ package main
 import (
 	"fmt"
 	"net"
-	"pusher/auth/auth"
-	"pusher/auth/wechat"
+	"pusher/auth/hello"
 
-	authpb "pusher/auth/api/gen/v1"
-
-	"go.uber.org/zap"
 	"google.golang.org/grpc"
+
+	helloworldpb "pusher/auth/api/gen/v1/hello"
 )
 
 func main() {
-	logger, err := zap.NewDevelopment()
-
-	lis, err := net.Listen("tcp", "8081")
+	lis, err := net.Listen("tcp", ":8089")
 	if err != nil {
 		fmt.Print("error")
 	}
 
 	s := grpc.NewServer()
-	authpb.RegisterAuthServiceServer(s, &auth.Service{
-		OpenIDResolver: &wechat.Service{
-			AppID:     "",
-			AppSecret: "",
-		},
-		Logger: logger,
-	})
+
+	helloworldpb.RegisterGreaterServer(s, &hello.Service{})
 
 	s.Serve(lis)
+	// authpb.RegisterAuthServiceServer(s, &auth.Service{
+	// 	OpenIDResolver: &wechat.Service{
+	// 		AppID:     "",
+	// 		AppSecret: "",
+	// 	},
+	// 	Logger: logger,
+	// })
+
+	// s.Serve(lis)
 }

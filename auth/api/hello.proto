@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package hello.v1;
+option go_package="pusher/auth/api/gen/v1/hello;hellopb";
+
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloResponse {
+    string message = 2;
+}
+
+service Greater {
+    rpc SayHello(HelloRequest) returns (HelloResponse);
+}
