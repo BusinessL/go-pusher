@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package auth.v1;
+option go_package="go-pusher/auth/api/gen/v1;authpb";
 
 message LoginRequest {
   string code = 1;
