@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net"
 	"pusher/auth/hello"
 
@@ -17,10 +18,12 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-
 	helloworldpb.RegisterGreaterServer(s, &hello.Service{})
 
-	s.Serve(lis)
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
+
 	// authpb.RegisterAuthServiceServer(s, &auth.Service{
 	// 	OpenIDResolver: &wechat.Service{
 	// 		AppID:     "",
@@ -30,4 +33,16 @@ func main() {
 	// })
 
 	// s.Serve(lis)
+
+	// conn, err := grpc.DialContext(context.Background(), "0.0.0.0:8080", grpc.WithBlock(), grpc.WithInsecure())
+
+	// gwmux := runtime.NewServeMux()
+
+	// err = helloworldpb.RegisterGreeterHandler(context.Background(), gwmux, conn)
+	// gwServer := &http.Server{
+	// 	Addr:    ":8090",
+	// 	Handler: gwmux,
+	// }
+
+	// gwServer.ListenAndServe()
 }

@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.3.0
 	github.com/medivhzhan/weapp/v2 v2.4.1
 	go.uber.org/zap v1.16.0
 	golang.org/x/net v0.0.0-20210420210106-798c2154c571 // indirect
