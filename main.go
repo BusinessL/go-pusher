@@ -9,20 +9,10 @@ import (
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
 
+	"pusher/service/auth"
+
 	authpb "pusher/proto/auth"
 )
-
-type server struct {
-	authpb.UnimplementedAuthServiceServer
-}
-
-func NewServer() *server {
-	return &server{}
-}
-
-func (s *server) Login(ctx context.Context, in *authpb.LoginRequest) (*authpb.LoginResponse, error) {
-	return &authpb.LoginResponse{AccessToken: in.Code + " world"}, nil
-}
 
 func main() {
 	// Create a listener on TCP port
@@ -34,7 +24,7 @@ func main() {
 	// Create a gRPC server object
 	s := grpc.NewServer()
 	// Attach the Greeter service to the server
-	authpb.RegisterAuthServiceServer(s, &server{})
+	authpb.RegisterAuthServiceServer(s, &auth.Server{})
 	// Serve gRPC server
 	log.Println("Serving gRPC on 0.0.0.0:8080")
 	go func() {
