@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package auth;
+option go_package="pusher/proto/auth;authpb";
+
+import "google/api/annotations.proto";
+
+message LoginRequest {
+  string code = 1;
+}
+
+message LoginResponse {
+  string access_token = 1;
+  int32  expires_in = 2;
+}
+
+service AuthService {
+  rpc Login (LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/v1/example/echo"
+      body: "*"
+    };
+  }
+}
