@@ -10,6 +10,9 @@ github.com/golang/protobuf/ptypes/wrappers
 github.com/grpc-ecosystem/grpc-gateway/v2/internal/httprule
 github.com/grpc-ecosystem/grpc-gateway/v2/runtime
 github.com/grpc-ecosystem/grpc-gateway/v2/utilities
+# github.com/medivhzhan/weapp/v2 v2.4.1
+## explicit
+github.com/medivhzhan/weapp/v2
 # golang.org/x/net v0.0.0-20210420210106-798c2154c571
 ## explicit
 golang.org/x/net/http/httpguts
