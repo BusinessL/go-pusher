@@ -11,7 +11,7 @@ message request {
 }
 
 message response {
-    int32 code = 3;
+    int64 code = 3;
     string message = 4;
 }
 

@@ -2,7 +2,9 @@ package mp
 
 import (
 	"context"
+	"fmt"
 	mppb "pusher/proto/mp"
+	"pusher/tool"
 )
 
 type Server struct {
@@ -10,5 +12,10 @@ type Server struct {
 }
 
 func (s *Server) Push(ctx context.Context, in *mppb.Request) (*mppb.Response, error) {
-	return &mppb.Response{Message: in.Content}, nil
+	te := tool.GetMpAccessToken()
+
+	fmt.Printf("%v", te.ErrCode)
+	res := tool.SendTemplate(te.AccessToken)
+
+	return &mppb.Response{Code: res.ErrCode}, nil
 }
