@@ -16,6 +16,21 @@ type ResAccessToken struct {
 }
 
 func GetMpAccessToken() (result ResAccessToken) {
+	rdb := redis.NewClient(&redis.Options{
+		Addr: "localhost:6379", 
+		Password: "", 
+		DB: 0
+	})
+	defer rdb.Close()  
+
+	//判断缓存是否有值
+	val, err := rdb.Get(ctx, "access_token").Result()
+	if(err == nil && val != "") {
+		result.AccessToken = val
+		return
+	}
+
+
 	resp, err := http.Get("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=fjaljasf&secret=fsdlafs")
 
 	if err != nil {
@@ -27,6 +42,8 @@ func GetMpAccessToken() (result ResAccessToken) {
 	body, err := ioutil.ReadAll(resp.Body)
 
 	json.Unmarshal(body, &result)
+
+	rdb.SET("access_token", result.AccessToken, 3600*time.Second)
 
 	return
 }

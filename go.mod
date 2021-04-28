@@ -3,6 +3,7 @@ module pusher
 go 1.14
 
 require (
+	github.com/go-redis/redis/v8 v8.8.2 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.3.0
 	github.com/medivhzhan/weapp/v2 v2.4.1
 	golang.org/x/net v0.0.0-20210420210106-798c2154c571 // indirect
