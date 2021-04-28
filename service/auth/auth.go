@@ -13,7 +13,7 @@ type Server struct {
 }
 
 func (s *Server) Login(ctx context.Context, in *authpb.LoginRequest) (*authpb.LoginResponse, error) {
-	res, err := wxapp.Login("appid", "app", in.Code)
+	res, err := wxapp.Login("appid", "secret", in.Code)
 	if err != nil {
 		fmt.Errorf("wxapp: %v", err)
 	}

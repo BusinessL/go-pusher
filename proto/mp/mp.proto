@@ -1,0 +1,25 @@
+syntax ="proto3";
+
+package mp;
+option go_package = "pusher/proto/mp;mppb";
+
+import "google/api/annotations.proto";
+
+message request {
+    string sns_id = 1;
+    string content = 2;
+}
+
+message response {
+    int32 code = 3;
+    string message = 4;
+}
+
+service MpService {
+    rpc push(request) returns (response) {
+        option (google.api.http) = {
+            post: "/v1/mp/push"
+            body: "*"
+        };
+    } 
+}
