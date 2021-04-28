@@ -1,0 +1,23 @@
+syntax= "proto3";
+
+package email;
+option go_package="pusher/proto/email";
+
+import "google/api/annotations.proto";
+
+message EmailRequest{
+    string email = 1;
+}
+
+message EmailResponse{
+    string code = 2;
+}
+
+service EmailService {
+    rpc send(EmailRequest) returns (EmailResponse){
+        option (google.api.http) = {
+            post: "/v1/email/push"
+            body: "*"
+        };
+    }
+}
