@@ -24,9 +24,6 @@ github.com/golang/protobuf/ptypes/wrappers
 github.com/grpc-ecosystem/grpc-gateway/v2/internal/httprule
 github.com/grpc-ecosystem/grpc-gateway/v2/runtime
 github.com/grpc-ecosystem/grpc-gateway/v2/utilities
-# github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible
-## explicit
-github.com/jordan-wright/email
 # github.com/medivhzhan/weapp/v2 v2.4.1
 ## explicit
 github.com/medivhzhan/weapp/v2

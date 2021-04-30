@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package phone;
+option go_package= "pusher/proto/phone;phonepb";
+
+message phoneRequest{
+    int64 phone = 1;
+}
+
+message phoneResponse{
+    int64 code = 2;
+}
+
+service PhoneService {
+    rpc send(phoneRequest) returns (phoneResponse);
+}

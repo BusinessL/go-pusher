@@ -16,7 +16,7 @@ message response {
 }
 
 service MpService {
-    rpc push(request) returns (response) {
+    rpc Push(request) returns (response) {
         option (google.api.http) = {
             post: "/v1/mp/push"
             body: "*"

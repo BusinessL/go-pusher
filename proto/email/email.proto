@@ -10,7 +10,7 @@ message EmailRequest{
 }
 
 message EmailResponse{
-    string code = 2;
+    int64 code = 2;
 }
 
 service EmailService {
