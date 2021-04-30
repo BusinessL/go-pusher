@@ -10,9 +10,11 @@ import (
 	"google.golang.org/grpc"
 
 	"pusher/service/auth"
+	"pusher/service/email"
 	"pusher/service/mp"
 
 	authpb "pusher/proto/auth"
+	emailpb "pusher/proto/email"
 	mppb "pusher/proto/mp"
 )
 
@@ -28,6 +30,7 @@ func main() {
 	// Attach the Greeter service to the server
 	authpb.RegisterAuthServiceServer(s, &auth.Server{})
 	mppb.RegisterMpServiceServer(s, &mp.Server{})
+	emailpb.RegisterEmailServiceServer(s, &email.Server{})
 
 	// Serve gRPC server
 	log.Println("Serving gRPC on 0.0.0.0:8080")
@@ -55,6 +58,11 @@ func main() {
 	}
 
 	err = mppb.RegisterMpServiceHandler(context.Background(), gwmux, conn)
+	if err != nil {
+		log.Fatalln("Failed to register gateway:", err)
+	}
+
+	err = emailpb.RegisterEmailServiceHandler(context.Background(), gwmux, conn)
 	if err != nil {
 		log.Fatalln("Failed to register gateway:", err)
 	}

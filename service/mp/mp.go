@@ -12,7 +12,7 @@ type Server struct {
 }
 
 func (s *Server) Push(ctx context.Context, in *mppb.Request) (*mppb.Response, error) {
-	te := tool.GetMpAccessToken()
+	te := tool.GetMpAccessToken(ctx)
 
 	fmt.Printf("%v", te.ErrCode)
 	res := tool.SendTemplate(te.AccessToken)

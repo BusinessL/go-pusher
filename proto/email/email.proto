@@ -14,7 +14,7 @@ message EmailResponse{
 }
 
 service EmailService {
-    rpc send(EmailRequest) returns (EmailResponse){
+    rpc Send(EmailRequest) returns (EmailResponse){
         option (google.api.http) = {
             post: "/v1/email/push"
             body: "*"

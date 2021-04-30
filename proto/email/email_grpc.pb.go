@@ -31,7 +31,7 @@ func NewEmailServiceClient(cc grpc.ClientConnInterface) EmailServiceClient {
 
 func (c *emailServiceClient) Send(ctx context.Context, in *EmailRequest, opts ...grpc.CallOption) (*EmailResponse, error) {
 	out := new(EmailResponse)
-	err := c.cc.Invoke(ctx, "/email.EmailService/send", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/email.EmailService/Send", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -74,7 +74,7 @@ func _EmailService_Send_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/email.EmailService/send",
+		FullMethod: "/email.EmailService/Send",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EmailServiceServer).Send(ctx, req.(*EmailRequest))
@@ -90,7 +90,7 @@ var EmailService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*EmailServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "send",
+			MethodName: "Send",
 			Handler:    _EmailService_Send_Handler,
 		},
 	},
